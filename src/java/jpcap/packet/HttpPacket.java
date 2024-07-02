@@ -13,7 +13,7 @@ import java.util.List;
 public class HttpPacket extends TCPPacket {
     private String data;
 
-    private String firstLine = "";
+    private String header = "";
     private String userAgent = "";
     private String host = "";
     private String accept = "";
@@ -59,7 +59,7 @@ public class HttpPacket extends TCPPacket {
 
             for (String line : linesList) {
                 if (linesList.indexOf(line) == 0) {
-                    firstLine = line;
+                    header = line;
                     continue;
                 }
 
@@ -135,7 +135,7 @@ public class HttpPacket extends TCPPacket {
     @Override
     public String toString() {
         String str = "Pacote HTTP " + (response ? "(response)" : "(request)") + "\n";
-        str += " Head = " + firstLine + "\n";
+        str += " Cabeçalho = " + header + "\n";
         str += " Endereço de origem = " + src_ip + "\n";
         str += " Endereço de destino = " + dst_ip + "\n";
         str += " Porta de origem = " + src_port + "\n";
